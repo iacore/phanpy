@@ -24,7 +24,7 @@
     top: var(--sai-top, 0);
     z-index: 1;
     background-color: var(--bg-blur-color);
-    backdrop-filter: blur(16px);
+    
     padding: 16px;
     padding: calc(var(--sai-top, 0) + 16px) calc(var(--sai-right, 0) + 16px)
       16px calc(var(--sai-left, 0) + 16px);

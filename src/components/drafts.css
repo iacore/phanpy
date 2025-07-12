@@ -62,7 +62,7 @@ button.draft-item:is(:hover, :focus) {
 }
 .mini-draft-aside.has-image > span {
   background-color: var(--bg-faded-blur-color);
-  backdrop-filter: blur(8px);
+  
   padding: 4px 8px;
   border-radius: 32px;
 }

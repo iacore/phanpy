@@ -206,7 +206,7 @@
     hsla(0, 0%, 0%, 0.013) 91.9%,
     hsla(0, 0%, 0%, 0) 100%
   );
-  filter: blur(32px) saturate(3) opacity(0.5);
+  filter:  saturate(3) opacity(0.5);
   pointer-events: none;
 }
 .account-container .header-banner:hover {
@@ -529,10 +529,10 @@
 
 @keyframes bye-banner {
   20% {
-    filter: blur(0) opacity(1);
+    filter:  opacity(1);
   }
   100% {
-    filter: blur(16px) opacity(0.2);
+    filter:  opacity(0.2);
   }
 }
 @keyframes surface-header {
@@ -632,7 +632,7 @@
     position: sticky;
     bottom: 0;
     background-color: var(--bg-faded-blur-color);
-    backdrop-filter: blur(16px) saturate(3);
+    backdrop-filter:  saturate(3);
     padding: 8px 16px;
     border-top: var(--hairline-width) solid var(--outline-color);
     padding-bottom: max(8px, env(safe-area-inset-bottom));

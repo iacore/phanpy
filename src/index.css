@@ -297,17 +297,17 @@ button[hidden] {
 :is(button, .button).plain {
   background-color: transparent;
   color: var(--link-color);
-  backdrop-filter: blur(12px);
+  
 }
 :is(button, .button).plain2 {
   background-color: transparent;
   color: var(--link-color);
-  backdrop-filter: blur(12px) invert(0.1);
+  backdrop-filter:  invert(0.1);
 }
 :is(button, .button).plain3 {
   background-color: transparent;
   color: var(--button-text-color);
-  backdrop-filter: blur(12px) invert(0.25);
+  backdrop-filter:  invert(0.25);
 }
 :is(button, .button).plain4 {
   background-color: transparent;
@@ -447,7 +447,7 @@ kbd {
 
 @media (prefers-color-scheme: dark) {
   :is(button, .button).plain2 {
-    backdrop-filter: blur(12px) brightness(0.5);
+    backdrop-filter:  brightness(0.5);
   }
 }
 

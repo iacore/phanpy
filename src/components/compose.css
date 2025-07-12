@@ -38,7 +38,7 @@
   line-height: 1.1;
   font-size: 90%;
   background-color: var(--bg-faded-blur-color);
-  backdrop-filter: blur(16px);
+  
   padding-inline-end: 1em;
   border-radius: 9999px;
 }
@@ -93,7 +93,7 @@
     var(--bg-faded-color)
   ); */
   border-top: var(--hairline-width) solid var(--outline-color);
-  backdrop-filter: blur(8px);
+  
   text-shadow:
     0 1px 10px var(--bg-color),
     0 1px 10px var(--bg-color),
