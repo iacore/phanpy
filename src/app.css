@@ -1766,9 +1766,9 @@ body:has(.media-modal-container + .status-deck) .media-post-link {
   overflow: hidden;
   /* ellipsis 2 lines */
   white-space: normal;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  display: flexbox;
+  flex-direction: column;
+  line-clamp: 2;
   line-clamp: 2;
   text-overflow: ellipsis;
 }
@@ -2135,9 +2135,9 @@ body > .szh-menu-container {
 }
 .szh-menu .menu-double-lines {
   white-space: normal !important;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  display: flexbox;
+  line-clamp: 2;
+  flex-direction: column;
   overflow: hidden !important;
 }
 .szh-menu .menu-double-lines span {

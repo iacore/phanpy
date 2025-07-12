@@ -374,11 +374,11 @@
 }
 .status.compact-thread .content-compact {
   overflow: hidden;
-  display: -webkit-box;
-  display: box;
-  -webkit-box-orient: vertical;
+  display: flexbox;
+  display: flex;
+  flex-direction: column;
   box-orient: vertical;
-  -webkit-line-clamp: 2;
+  line-clamp: 2;
   line-clamp: 2;
   font-size: 90%;
 }
@@ -445,11 +445,11 @@
 
   .content-compact {
     overflow: hidden;
-    display: -webkit-box;
-    display: box;
-    -webkit-box-orient: vertical;
+    display: flexbox;
+    display: flex;
+    flex-direction: column;
     box-orient: vertical;
-    -webkit-line-clamp: 2;
+    line-clamp: 2;
     line-clamp: 2;
     font-size: 90%;
     line-height: var(--avatar-size);
@@ -1732,9 +1732,9 @@ body:has(#modal-container .carousel) .status .media img:hover {
   }
 }
 .status:not(.large) .hashtag-stuffing:first-child {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  display: flexbox;
+  line-clamp: 3;
+  flex-direction: column;
   white-space: normal;
 }
 /* Collapse possible hashtag stuffing */
@@ -1750,9 +1750,9 @@ body:has(#modal-container .carousel) .status .media img:hover {
     .hashtag:nth-of-type(8)
   ):has(.hashtag:nth-of-type(9)) {
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  display: flexbox;
+  line-clamp: 3;
+  flex-direction: column;
 } */
 
 .media-figure-multiple {
@@ -1844,11 +1844,11 @@ body:has(#modal-container .carousel) .status .media img:hover {
 .carousel-item button.media-alt .media-alt-desc {
   overflow: hidden;
   white-space: normal;
-  display: -webkit-box;
-  display: box;
-  -webkit-box-orient: vertical;
+  display: flexbox;
+  display: flex;
+  flex-direction: column;
   box-orient: vertical;
-  -webkit-line-clamp: 2;
+  line-clamp: 2;
   line-clamp: 2;
   line-height: 1.4;
 }
@@ -1952,11 +1952,11 @@ a:focus-visible .card img {
   font-weight: normal;
   text-overflow: ellipsis;
   overflow: hidden;
-  display: -webkit-box;
-  display: box;
-  -webkit-box-orient: vertical;
+  display: flexbox;
+  display: flex;
+  flex-direction: column;
   box-orient: vertical;
-  -webkit-line-clamp: 2;
+  line-clamp: 2;
   line-clamp: 2;
   text-wrap: balance;
 }
@@ -1966,15 +1966,15 @@ a:focus-visible .card img {
   margin: 0;
   text-overflow: ellipsis;
   overflow: hidden;
-  display: -webkit-box;
-  display: box;
-  -webkit-box-orient: vertical;
+  display: flexbox;
+  display: flex;
+  flex-direction: column;
   box-orient: vertical;
-  -webkit-line-clamp: 2;
+  line-clamp: 2;
   line-clamp: 2;
 }
 .card.no-image :is(.title, .meta) {
-  -webkit-line-clamp: 3;
+  line-clamp: 3;
   line-clamp: 3;
 }
 .card .meta.domain {
@@ -2028,7 +2028,7 @@ a.card:is(:hover, :focus):visited {
   }
 
   .meta {
-    -webkit-line-clamp: 5;
+    line-clamp: 5;
     line-clamp: 5;
     opacity: 1;
     /* font-size: inherit; */
@@ -2659,9 +2659,9 @@ a.card:is(:hover, :focus):visited {
 
   .links-list {
     li > a {
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
+      display: flexbox;
+      line-clamp: 1;
+      flex-direction: column;
       overflow: hidden;
     }
   }

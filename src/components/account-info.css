@@ -321,11 +321,11 @@
     opacity: 0.75;
     text-overflow: ellipsis;
     overflow: hidden;
-    display: -webkit-box;
-    display: box;
-    -webkit-box-orient: vertical;
+    display: flexbox;
+    display: flex;
+    flex-direction: column;
     box-orient: vertical;
-    -webkit-line-clamp: 2;
+    line-clamp: 2;
     line-clamp: 2;
     text-align: start;
   }
@@ -576,11 +576,11 @@
     );
 
     .account-block-content {
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
+      display: flexbox;
+      flex-direction: column;
       overflow: hidden;
       line-clamp: 3;
-      -webkit-line-clamp: 3;
+      line-clamp: 3;
     }
   }
 

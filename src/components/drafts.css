@@ -78,11 +78,11 @@ button.draft-item:is(:hover, :focus) {
 .mini-draft-status {
   text-overflow: ellipsis;
   overflow: hidden;
-  display: -webkit-box;
-  display: box;
-  -webkit-box-orient: vertical;
+  display: flexbox;
+  display: flex;
+  flex-direction: column;
   box-orient: vertical;
-  -webkit-line-clamp: 2;
+  line-clamp: 2;
   line-clamp: 2;
   line-height: 1.1;
 }

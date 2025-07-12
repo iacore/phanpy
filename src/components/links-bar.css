@@ -210,23 +210,23 @@
       margin: 0;
       padding: 0;
       text-wrap: balance;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
+      display: flexbox;
+      line-clamp: 3;
+      flex-direction: column;
       overflow: hidden;
     }
 
     p {
       color: var(--text-insignificant-color);
       margin: 0;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      display: flexbox;
+      line-clamp: 2;
+      flex-direction: column;
       overflow: hidden;
       font-size: 90%;
 
       &.more-lines {
-        -webkit-line-clamp: 3;
+        line-clamp: 3;
       }
     }
 

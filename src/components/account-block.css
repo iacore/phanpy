@@ -23,9 +23,9 @@
   gap: 2px;
 
   * {
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
+    flex-direction: column;
+    display: flexbox;
+    line-clamp: 1;
     line-clamp: 1;
     text-overflow: ellipsis;
     overflow: hidden;

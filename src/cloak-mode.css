@@ -45,7 +45,7 @@ body.cloak,
 
 /* SPECIAL CASES */
 
-@supports (display: -webkit-box) {
+@supports (display: flexbox) {
   :is(body.cloak, .cloak) .card :is(.title, .meta) {
     background-color: currentColor !important;
   }

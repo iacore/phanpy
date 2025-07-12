@@ -93,9 +93,9 @@
   opacity: 0.75;
   padding-top: 0.75em;
   border-top: var(--hairline-width) solid var(--outline-color);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  display: flexbox;
+  line-clamp: 3;
+  flex-direction: column;
   overflow: hidden;
   mask-image: linear-gradient(to bottom, black 3em, transparent);
 }
@@ -103,8 +103,8 @@
   .translated-block
   output.translated-pronunciation-content.expand {
   display: block;
-  -webkit-line-clamp: unset;
-  -webkit-box-orient: unset;
+  line-clamp: unset;
+  flex-direction: unset;
   overflow: visible;
   mask-image: none;
 }
