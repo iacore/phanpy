@@ -1562,7 +1562,7 @@ function SubComments({
         '--comments-level': level,
       }}
       data-comments-level={level}
-      data-comments-level-overflow={level > 4}
+      data-comments-level-overflow={false}
     >
       {!open && (
         <summary class="replies-summary" hidden={open}>
