@@ -2480,7 +2480,6 @@ function EditProfileSheet({ onClose = () => {} }) {
                 <textarea
                   defaultValue={note}
                   name="note"
-                  maxLength={500}
                   rows="5"
                   disabled={uiState === 'loading'}
                   dir="auto"
