@@ -517,7 +517,7 @@ msgid "Unable to update private note."
 msgstr "Unable to update private note."
 
 #: src/components/account-info.jsx:2233
-#: src/components/account-info.jsx:2531
+#: src/components/account-info.jsx:2530
 msgid "Cancel"
 msgstr ""
 
@@ -546,19 +546,19 @@ msgstr ""
 msgid "Bio"
 msgstr ""
 
-#: src/components/account-info.jsx:2492
+#: src/components/account-info.jsx:2491
 msgid "Extra fields"
 msgstr ""
 
-#: src/components/account-info.jsx:2498
+#: src/components/account-info.jsx:2497
 msgid "Label"
 msgstr ""
 
-#: src/components/account-info.jsx:2501
+#: src/components/account-info.jsx:2500
 msgid "Content"
 msgstr ""
 
-#: src/components/account-info.jsx:2534
+#: src/components/account-info.jsx:2533
 #: src/components/list-add-edit.jsx:152
 #: src/components/shortcuts-settings.jsx:715
 #: src/pages/filters.jsx:570
@@ -566,20 +566,20 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: src/components/account-info.jsx:2588
+#: src/components/account-info.jsx:2587
 msgid "username"
 msgstr ""
 
-#: src/components/account-info.jsx:2592
+#: src/components/account-info.jsx:2591
 msgid "server domain name"
 msgstr ""
 
 #. placeholder {0}: info.username
-#: src/components/account-info.jsx:2658
+#: src/components/account-info.jsx:2657
 msgid "Profiles featured by @{0}"
 msgstr "Profiles featured by @{0}"
 
-#: src/components/account-info.jsx:2684
+#: src/components/account-info.jsx:2683
 msgid "No featured profiles."
 msgstr "No featured profiles."
 
