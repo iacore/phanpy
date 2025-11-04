@@ -6,7 +6,7 @@ import { lingui } from '@lingui/vite-plugin';
 import preact from '@preact/preset-vite';
 import Sonda from 'sonda/vite';
 import { uid } from 'uid/single';
-import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import generateFile from 'vite-plugin-generate-file';
 import htmlPlugin from 'vite-plugin-html-config';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -22,6 +22,7 @@ const {
   PHANPY_CLIENT_NAME: CLIENT_NAME,
   PHANPY_APP_ERROR_LOGGING: ERROR_LOGGING,
   PHANPY_REFERRER_POLICY: REFERRER_POLICY,
+  PHANPY_DISALLOW_ROBOTS: DISALLOW_ROBOTS,
   PHANPY_DEV,
 } = loadEnv('production', process.cwd(), allowedEnvPrefixes);
 
@@ -55,6 +56,11 @@ export default defineConfig({
   },
   server: {
     host: true,
+    watch: {
+      awaitWriteFinish: {
+        pollInterval: 1000,
+      },
+    },
   },
   css: {
     preprocessorMaxWorkers: 1,
@@ -83,7 +89,6 @@ export default defineConfig({
         // },
       ],
     }),
-    splitVendorChunkPlugin(),
     removeConsole({
       includes: ['log', 'debug', 'info', 'warn', 'error'],
     }),
@@ -120,7 +125,31 @@ export default defineConfig({
           commitHash,
         },
       },
+      ...(DISALLOW_ROBOTS
+        ? [
+            {
+              type: 'raw',
+              output: './robots.txt',
+              data: 'User-agent: *\nDisallow: /',
+            },
+          ]
+        : []),
     ]),
+    {
+      // https://developers.cloudflare.com/pages/configuration/early-hints/
+      name: 'generate-headers',
+      writeBundle(_, bundle) {
+        const cssFiles = Object.keys(bundle).filter((file) =>
+          file.endsWith('.css'),
+        );
+        if (cssFiles.length > 0) {
+          const links = cssFiles
+            .map((file) => `  Link: <${file}>; rel=preload; as=style`)
+            .join('\n');
+          fs.writeFileSync(resolve(__dirname, 'dist/_headers'), `/\n${links}`);
+        }
+      },
+    },
     VitePWA({
       manifest: {
         name: CLIENT_NAME,
@@ -164,12 +193,35 @@ export default defineConfig({
       brotli: true,
       open: false,
     }),
+    {
+      name: 'css-ordering-plugin',
+      transformIndexHtml(html) {
+        const stylesheets = [];
+        html = html.replace(
+          /<link[^>]*rel=["']stylesheet["'][^>]*>/g,
+          (match) => {
+            stylesheets.push(match);
+            return '';
+          },
+        );
+
+        // Try to place before first <link> tag, fallback to after last <meta> tag
+        const linkRegex = /<link[^>]*>/;
+        if (linkRegex.test(html)) {
+          return html.replace(linkRegex, (match) => {
+            return stylesheets.join('') + match;
+          });
+        } else {
+          return html.replace(/(<meta[^>]*>)(?![\s\S]*<meta)/, (match) => {
+            return match + stylesheets.join('');
+          });
+        }
+      },
+    },
   ],
   build: {
     sourcemap: true,
-    // Note: In Vite 6, if cssCodeSplit = false, it will show error "Cannot read properties of undefined (reading 'includes')"
-    // TODO: Revisit this when this issue is fixed
-    // cssCodeSplit: false,
+    cssCodeSplit: false,
     rollupOptions: {
       treeshake: false,
       input: {
@@ -177,10 +229,26 @@ export default defineConfig({
         compose: resolve(__dirname, 'compose/index.html'),
       },
       output: {
-        manualChunks: {
-          // 'intl-segmenter-polyfill': ['@formatjs/intl-segmenter/polyfill'],
-          'tinyld-light': ['tinyld/light'],
-        },
+        // NOTE: Comment this for now. This messes up async imports.
+        // Without SplitVendorChunkPlugin, pushing everything to vendor is not "smart" enough
+        // manualChunks: (id, { getModuleInfo }) => {
+        //   // if (id.includes('@formatjs/intl-segmenter/polyfill')) return 'intl-segmenter-polyfill';
+        //   if (/tiny.*light/.test(id)) return 'tinyld-light';
+
+        //   // Implement logic similar to splitVendorChunkPlugin
+        //   if (id.includes('node_modules')) {
+        //     // Check if this module is dynamically imported
+        //     const moduleInfo = getModuleInfo(id);
+        //     if (moduleInfo) {
+        //       // If it's imported dynamically, don't put in vendor
+        //       const isDynamicOnly =
+        //         moduleInfo.importers.length === 0 &&
+        //         moduleInfo.dynamicImporters.length > 0;
+        //       if (isDynamicOnly) return null;
+        //     }
+        //     return 'vendor';
+        //   }
+        // },
         chunkFileNames: (chunkInfo) => {
           const { facadeModuleId } = chunkInfo;
           if (facadeModuleId && facadeModuleId.includes('icon')) {
@@ -210,6 +278,29 @@ export default defineConfig({
                 }
               });
             }
+          },
+        },
+        {
+          name: 'remove-chunk-sourcemaps',
+          generateBundle(_, bundle) {
+            // Remove .js.map files and sourcemap references for specific chunks
+            Object.keys(bundle).forEach((fileName) => {
+              const shouldRemoveSourcemap =
+                fileName.includes('locales/') || fileName.includes('icons/');
+
+              if (fileName.endsWith('.js.map') && shouldRemoveSourcemap) {
+                delete bundle[fileName];
+              } else if (fileName.endsWith('.js') && shouldRemoveSourcemap) {
+                const chunk = bundle[fileName];
+                if (chunk.type === 'chunk' && chunk.code) {
+                  // Remove sourceMappingURL comment
+                  chunk.code = chunk.code.replace(
+                    /\/\/# sourceMappingURL=.+\.js\.map\n?$/,
+                    '',
+                  );
+                }
+              }
+            });
           },
         },
       ],
