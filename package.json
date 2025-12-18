@@ -27,6 +27,7 @@
     "@github/text-expander-element": "~2.9.2",
     "@iconify-icons/mingcute": "~1.2.9",
     "@justinribeiro/lite-youtube": "~1.9.0",
+    "@lingui/core": "^5.7.0",
     "@lingui/detect-locale": "~5.5.2",
     "@lingui/macro": "~5.5.2",
     "@lingui/react": "~5.5.2",
