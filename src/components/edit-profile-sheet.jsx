@@ -295,7 +295,7 @@ function EditProfileSheet({ onClose = () => {} }) {
                 </tr>
               </thead>
               <tbody>
-                {Array.from({ length: Math.max(4, fields.length) }).map(
+                {Array.from({ length: 16 }).map(
                   (_, i) => {
                     const { name = '', value = '' } = fields[i] || {};
                     return (
